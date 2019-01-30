@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>接口测试</title>
+	<script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<script type="text/javascript">
+	$.ajax(
+	{
+		type:'get',
+		data:{
+			pageNum:10,
+			pageSize:10
+		},
+		url:'/article/getArticle',
+		success:function(data){
+			console.log(data);
+		},
+		error:function(){
+			console.log('error');
+		}
+	});
+	$.ajax(
+	{
+		type:'post',
+		dataType: 'json',
+		data:{
+			title:'我是vue',
+			content:'这是插入内容',
+			time:'2018',
+			tab:'vue',
+			see:2000
+		},
+		url:'/article/updateArticle',
+		success:function(data){
+			console.log(data);
+		},
+		error:function(){
+			console.log('error');
+		}
+	});
+	$.ajax(
+	{
+		type:'get',
+		data:{
+			id:70
+		},
+		url:'/article/getArticleInfo',
+		success:function(data){
+			console.log(data);
+		},
+		error:function(){
+			console.log('error');
+		}
+	});
+		$.ajax(
+	{
+		type:'post',
+		data:{
+			comment_article_id:'60',
+			comment_name:'jackerw',
+			comment_content:'我是评论内容qeqwre',
+		},
+		url:'/comment/updateComment',
+		success:function(data){
+			console.log(data);
+		},
+		error:function(){
+			console.log('error');
+		}
+	});
+</script>
+</body>
+</html>

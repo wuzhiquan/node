@@ -1,7 +1,7 @@
 let express=require('express');
 let app =express();
 let swig = require('swig');
-let bodyParser = require("body-parser"); 
+let bodyParser = require("body-parser");
 let article = require('./api/article.js');
 let comment = require('./api/comment.js');
 let tab = require('./api/tab.js');
@@ -41,10 +41,8 @@ app.use('/article',article);
 app.use('/comment',comment);
 //标签接口
 app.use('/tab',tab);
-console.log('重启');
 //配置服务端口 
 let server = app.listen(5050, function () {
   let host = server.address().address;
   let port = server.address().port;
-  console.log('成功连接', host, port);
 });

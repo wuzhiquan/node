@@ -5,19 +5,21 @@ var mysql = require('mysql');
 var router=express.Router();
 
 //评论接口
-router.post('/updateComment',function(req,res){
+router.post('/createComment',function(req,res){
   var reqData=req.body;
   var params={
-      comment_article_id:reqData.comment_article_id,
-      comment_name:reqData.comment_name,
-      comment_content:reqData.comment_content,
+      article_id:reqData.article_id,
+      name:reqData.name,
+      content:reqData.content,
+      contact:reqData.contact
   }
-  var dbInsert="INSERT INTO blog_comment(comment_article_id,comment_name,comment_content) VALUES(?,?,?)";
+  var dbInsert="INSERT INTO blog_comment(article_id,name,content,contact) VALUES(?,?,?,?)";
 
   var paramsInfo=[
-      params.comment_article_id,
-      params.comment_name,
-      params.comment_content
+      params.article_id,
+      params.name,
+      params.content,
+      params.contact
   ]
   db(dbInsert,paramsInfo,(err,data)=>{
     res.json({
@@ -29,7 +31,7 @@ router.post('/updateComment',function(req,res){
 
 //获取评论列表
 router.get('/getComment', function(req, res){
-  var allComment = "select * from blog_comment";
+  var allComment = "SELECT a.article_id,a.name,a.content,a.time,b.title FROM blog_comment a LEFT JOIN blog_article_front b ON a.article_id=b.article_id ORDER BY a.time DESC";
   db(allComment, (err,data)=>{
     res.json({
      status:200,
